@@ -39,4 +39,28 @@ public class SaleController {
         }
         return ResponseEntity.ok(new GenericResponse<>("", saleFound));
     }
+
+    @DeleteMapping(value = "/{saleId}")
+    public ResponseEntity<GenericResponse<Boolean>> deleteSale(@PathVariable Long saleId) {
+
+        try {
+            this.saleUseCase.deleteSale(saleId);
+        } catch (SaleNotFoundException e) {
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(new GenericResponse<>(e.getMessage(), false));
+        }
+        return ResponseEntity.ok(new GenericResponse<>("sale deleted", true));
+    }
+
+    @PutMapping
+    public ResponseEntity<GenericResponse<Sale>> updateSale(@RequestBody Sale sale) {
+        Sale saleUpdated = null;
+        try {
+            saleUpdated = this.saleUseCase.updateSale(sale);
+        } catch (SaleNotFoundException e) {
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(new GenericResponse<>(e.getMessage(), null));
+        }
+        return ResponseEntity.ok(new GenericResponse<>("sale updated", saleUpdated));
+    }
 }
