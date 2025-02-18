@@ -1,6 +1,6 @@
 package com.dashboard.business_administration.infrastructure.controllers;
 
-import com.dashboard.business_administration.application.use_cases.SaleUseCase;
+import com.dashboard.business_administration.application.SaleUseCase;
 import com.dashboard.business_administration.domain.exceptions.SaleNotFoundException;
 import com.dashboard.business_administration.domain.models.Sale;
 import com.dashboard.business_administration.domain.responses.GenericResponse;

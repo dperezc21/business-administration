@@ -1,4 +1,4 @@
-package com.dashboard.business_administration.application.use_cases;
+package com.dashboard.business_administration.application;
 
 import com.dashboard.business_administration.domain.exceptions.SaleNotFoundException;
 import com.dashboard.business_administration.domain.models.Sale;
