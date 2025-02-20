@@ -5,6 +5,8 @@ import com.dashboard.business_administration.domain.repositories.CategoryReposit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryUseCases {
     @Autowired private CategoryRepository repository;
@@ -15,6 +17,10 @@ public class CategoryUseCases {
         Category categoryToSave = new Category(categoryName);
         repository.createCategory(categoryToSave);
         return categoryToSave;
+    }
+
+    public List<Category> getAllCategories() {
+        return this.repository.getAllCategories();
     }
 
 }
