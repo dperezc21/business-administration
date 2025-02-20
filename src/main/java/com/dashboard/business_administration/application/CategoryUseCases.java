@@ -23,4 +23,10 @@ public class CategoryUseCases {
         return this.repository.getAllCategories();
     }
 
+    public void deleteCategory(Long categoryId) {
+        Category categoryToDelete = this.repository.getCategoryById(categoryId);
+        if(categoryToDelete == null) return;
+        this.repository.deleteCategory(categoryToDelete.getId());
+    }
+
 }
