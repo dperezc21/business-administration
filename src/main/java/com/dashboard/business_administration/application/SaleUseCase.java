@@ -1,7 +1,9 @@
 package com.dashboard.business_administration.application;
 
 import com.dashboard.business_administration.domain.exceptions.SaleNotFoundException;
+import com.dashboard.business_administration.domain.models.Category;
 import com.dashboard.business_administration.domain.models.Sale;
+import com.dashboard.business_administration.domain.repositories.CategoryUseCaseRepository;
 import com.dashboard.business_administration.domain.repositories.SaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +14,12 @@ import java.util.List;
 public class SaleUseCase {
 
     @Autowired private SaleRepository saleRepository;
+    @Autowired private CategoryUseCaseRepository categoryUseCaseRepository;
 
-    public Sale saveSale(Double price, String description, Integer quantities) {
-        Sale saleToSave = new Sale(price, description, quantities);
+    public Sale saveSale(Double price, String description, Integer quantities, Long categoryId) {
+        Category findCategory = this.categoryUseCaseRepository.getCategoryById(categoryId);
+        if(findCategory == null) return null;
+        Sale saleToSave = new Sale(price, description, quantities, findCategory);
         this.saleRepository.saveSale(saleToSave);
         return saleToSave;
     }

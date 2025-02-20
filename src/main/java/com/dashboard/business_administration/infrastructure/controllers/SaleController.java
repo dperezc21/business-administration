@@ -4,6 +4,7 @@ import com.dashboard.business_administration.application.SaleUseCase;
 import com.dashboard.business_administration.domain.exceptions.SaleNotFoundException;
 import com.dashboard.business_administration.domain.models.Sale;
 import com.dashboard.business_administration.domain.responses.GenericResponse;
+import com.dashboard.business_administration.domain.responses.SaleResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ public class SaleController {
     @Autowired private SaleUseCase saleUseCase;
 
     @PostMapping
-    public ResponseEntity<Sale> save(@RequestBody Sale sale) {
-        Sale saleSaved = this.saleUseCase.saveSale(sale.getPrice(), sale.getDescription(), sale.getQuantities());
+    public ResponseEntity<Sale> save(@RequestBody SaleResponse sale) {
+        Sale saleSaved = this.saleUseCase.saveSale(sale.getPrice(), sale.getDescription(), sale.getQuantities(), sale.getCategoryId());
         return ResponseEntity.ok(saleSaved);
     }
 
