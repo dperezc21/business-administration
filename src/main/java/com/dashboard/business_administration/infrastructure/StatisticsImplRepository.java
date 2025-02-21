@@ -22,6 +22,6 @@ public class StatisticsImplRepository implements StatisticsRepository {
 
     @Override
     public List<Sale> salesLessThan(Double aDouble) {
-        return List.of();
+        return this.repository.getSalesLessThan(aDouble);
     }
 }
